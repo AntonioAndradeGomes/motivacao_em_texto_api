@@ -8,8 +8,8 @@ import {
 
 @Entity("mensagens")
 export default class Mensagem {
-  @PrimaryGeneratedColumn("increment")
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({ type: "text" })
   texto: string;

@@ -7,5 +7,5 @@ const mensagensController = new MensagensController();
 
 messagesRouter.get("/", mensagensController.readOne);
 messagesRouter.get("/all", mensagensController.readAll);
-
+messagesRouter.post('/', mensagensController.insert);
 export default messagesRouter;
