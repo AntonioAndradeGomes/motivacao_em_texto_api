@@ -15,25 +15,25 @@ export default class MensagensController {
   }
 
   public async readOne(req: Request, res: Response) {
-    //const {ignoreIds} = req.body;
-
-    //if(!ignoreIds || ignoreIds.length == 0){
-      //console.log('Sem ids');
+    const ignore = req.params;
+   // console.log(ignore);
+    if(!ignore.ignore1){
+      //console.log('sem ignorados');
       const sql = await getManager().query('SELECT * FROM mensagens ORDER BY RAND() LIMIT 1');
       return res.json(sql[0]);
-    /*}
-    //console.log(ignoreIds.length);
-    if( ignoreIds.length == 1){
-      const sql = await getManager().query(`SELECT * FROM mensagens WHERE id NOT IN (\'${ignoreIds[0]}\') ORDER BY RAND() LIMIT 1`);
+    } else if(ignore.ignore3 && ignore.ignore2 && ignore.ignore1){
+      //console.log('3 ignorados');
+      const sql = await getManager().query(`SELECT * FROM mensagens WHERE id NOT IN (\'${ignore.ignore3}\', \'${ignore.ignore2}\', \'${ignore.ignore1}\') ORDER BY RAND() LIMIT 1`);
       return res.json(sql[0]);
-    }else if (ignoreIds.length == 2){
-      const sql = await getManager().query(`SELECT * FROM mensagens WHERE id NOT IN (\'${ignoreIds[0]}\', \'${ignoreIds[1]}\') ORDER BY RAND() LIMIT 1`);
+    }else if(ignore.ignore2 && ignore.ignore1){
+      //console.log('2 ignorados');
+      const sql = await getManager().query(`SELECT * FROM mensagens WHERE id NOT IN (\'${ignore.ignore2}\', \'${ignore.ignore1}\') ORDER BY RAND() LIMIT 1`);
       return res.json(sql[0]);
     }else {
-      const sql = await getManager().query(`SELECT * FROM mensagens WHERE id NOT IN (\'${ignoreIds[0]}\', \'${ignoreIds[1]}\', \'${ignoreIds[2]}\') ORDER BY RAND() LIMIT 1`);
+     // console.log('1 ignorado');
+      const sql = await getManager().query(`SELECT * FROM mensagens WHERE id NOT IN (\'${ignore.ignore1}\') ORDER BY RAND() LIMIT 1`);
       return res.json(sql[0]);
-    }*/
-
+    }
   }
 
   public async insert(req: Request, res: Response) {
