@@ -7,7 +7,7 @@ const routes = Router();
 routes.use("/messages", messagesRouter);
 
 routes.get("/", (req, res) => {
-  throw new AppError("teste de erros", 401);
+  throw new AppError("Olá mundo!", 401);
 });
 
 export default routes;
